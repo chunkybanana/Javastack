@@ -1,0 +1,72 @@
+function run(code){
+    function lex(text){
+        let tokens = [], string = false, string_so_far = '', whitespace = ' \n\t';
+        for(let char of text){
+            if(whitespace.includes(char) && !string){
+                if(!string_so_far) continue
+                tokens.push(string_so_far);
+                string_so_far = '';
+            } else if(char == '"'){
+                if(string) tokens.push(`"${string_so_far}"`), string_so_far = ''
+                if(string = !string) string_so_far = '';
+            } else string_so_far += char
+        }
+        return tokens
+    }
+    function parse(list){
+        let nestedstack = [], tokens = [];
+        for(let token of list){
+            if(token[0] == '"'){
+                tokens.push(['string',token])
+            } else if(token.match(/[\d\.]+/)){
+                tokens.push(['number',token]);
+            } else if(['times','foreach','while','map','if','forever','until','unless','twice','thrice','whilechange','four','five'].includes(token)){
+                tokens.push([token,'']);
+                nestedstack.push(token);
+            } else if(token == 'else'){
+                if(nestedstack.pop() == 'if'){
+                    nestedstack.push('else')
+                    tokens.push(['else',''])
+                } else throw new SyntaxError('Syntax Error: else not in if')
+            } else if(token == 'end') {
+                let popped = nestedstack.pop()
+                if(typeof popped === 'undefined') throw new SyntaxError('Syntax Error: Unmatched end')
+                tokens.push(['end_'+popped,''])
+            } else {
+                tokens.push(['element',token])
+            }
+        }
+        tokens.push(...nestedstack.map(z=>['end_'+z,'']).reverse())
+        return tokens
+    }
+    function genCursedError(){
+        let rand = x => x[~~(Math.random() * x.length)], h, q, v;
+        return `${rand(['Syntax','Reference','Type','Internal','You','Java','Error','Meta','Not An ','Interpreter','Random','Range','Muffin','Potential','Invisible','Bad'])}Error on line ${~~(Math.random() * 100)}:`+'\n'+
+        `${[...Array(z = ~~(Math.random() * 50 +  30))].map(x=>String.fromCharCode(~~(Math.random() * 95 + 32))).join``}`+'\n'+
+        `${' '.repeat(~~(Math.random() * z))}^`+'\n'+
+        `${rand([
+	        `${rand(['This','Commas','Life','Screwdrivers','Water','Semicolons','You'])} cannot be used to ${rand(q=['eat','yeet','dissolve','use','remove','convert'])} ${rand(v=['potatoes','semicolons','you','peanuts','coffee','the digestive system'])}`,
+            `Please don't ${rand(q)} ${rand(v)} - it causes ${rand(['cursed error messages like this one','bad puns','deconfrickulation of apioforms','Vitamin C','5th of July fireworks'])}.`,
+            `Why did you do it? It's ruined I tell you, ruined!`,
+            `Golfing tip: Use '${rand(h=['thrice','four','dynamite','add','concat','lyxal','rearrange','permutations'])}' instead of '${rand(h)}'.`,
+            `The problem isn't with the code. It's with you.`,
+        ])}`
+    }
+    let elements = {
+        'add':[(a,b) =>a + b,2]
+    }
+    function compile(tokens) {
+        let compiled = '';
+        let genSecret = x => Math.random().toString(16).slice(2);
+        let for_loop = (times, secret) => `for(${secret} = 0; ${secret} < ${times}; ${secret}++){\n context_variable = ${secret}`
+        for(token of tokens){
+            let secret = genSecret(), secret2 = genSecret();
+            if(token[0] == 'twice') compiled += for_loop(2,secret);
+            if(token[0] == 'thrice') compiled += for_loop(3,secret);
+            if(token[0] == 'four') compiled += for_loop(4,secret);
+            if(token[0] == 'five') compiled += for_loop(5,secret);
+            if(token[0] == 'times') compiled += `for(${secret} = 0,${secret2} = pop; ${secret} < ${s}; ${secret}++){\n context_variable = ${secret}`
+        }
+    }
+    console.log(parse(lex(code)))
+}
