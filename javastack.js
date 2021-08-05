@@ -55,7 +55,17 @@ function run(code,inputs){
     }
     let elements = {
         'add':[(a,b) =>a + b,2],
-        'print':[console.log,1]
+        'print':[console.log,1],
+        'multiply':[(a,b)=> a * b, 2],
+        'repeat':[(a,b) => b.repeat(a), 2],
+        'replace':[(a,b,c) => c.replaceAll(b,a),3],
+        'maybe': [() => Math.random() < 0.5,0],
+        'swap': [(a,b) => [b,a],2,1],
+        'index': [(a,b)=>b[a],2],
+        'and':[(a,b)=>a&&b,2],
+        'bitand':[(a,b)=>a&b,2],
+        'or':[(a,b)=>a||b,2],
+        'bitor':[(a,b)=>a|b,2],
     }
     function last(arr){
         return arr[arr.length-1]
@@ -94,13 +104,14 @@ function run(code,inputs){
             if(token[0] == 'string') compiled += `stack.push(${token[1]})\n`;
             if(token[0] == 'map') compiled += 'stack.push([...pop(stack)].map(x=>{\nvar stack = [];\ninputstack.push([x]);\n';
             if(token[0] == 'end_map')  compiled += 'let result = pop(stack);\ninputstack.pop();\nreturn result;\n}))\n';
-            if(token[0] == 'element') compiled += `stack.push(elements.${token[1]}[0](...pop(stack,${elements[token[1]][1]}, true)))\n`;
+            if(token[0] == 'element') compiled += `stack.push(${elements[token[1]][2]?'...':''}elements.${token[1]}[0](...pop(stack,${elements[token[1]][1]}, true)))\n`;
         }
         return compiled;
     }
     let stack = [], inputstack = [inputs];
+    
     eval(compile(parse(lex(code))));
     //console.log(compile(parse(lex(code))))
 }
 
-run('2 2 add print')
+run('"Hello, world!" "l" "o" replace print')
