@@ -10,5 +10,5 @@
 |`index`| (a: number, b: any) | b\[a\] (index a into b) |
 |`and`| (a: any, b: any) | a && b (logical)|
 |`bitand`| (a: number, b: number)| a & b (bitwise) |
-|`or`| (a: any, b: any) | a || b (logical)|
-|`bitor`| (a: number, b: number)| a | b (bitwise) |
+|`or`| (a: any, b: any) | a \|\| b (logical)|
+|`bitor`| (a: number, b: number)| a \| b (bitwise) |
