@@ -1,3 +1,4 @@
+let elements = require('./elements')
 function run(code,inputs){
     function lex(text){
         let tokens = [], string = false, string_so_far = '', whitespace = ' \n\t';
@@ -52,20 +53,6 @@ function run(code,inputs){
             `Golfing tip: Use '${rand(h=['thrice','four','dynamite','add','concat','lyxal','rearrange','permutations'])}' instead of '${rand(h)}'.`,
             `The problem isn't with the code. It's with you.`,
         ])}`
-    }
-    let elements = {
-        'add':[(a,b) =>a + b,2],
-        'print':[console.log,1],
-        'multiply':[(a,b)=> a * b, 2],
-        'repeat':[(a,b) => b.repeat(a), 2],
-        'replace':[(a,b,c) => c.replaceAll(b,a),3],
-        'maybe': [() => Math.random() < 0.5,0],
-        'swap': [(a,b) => [b,a],2,1],
-        'index': [(a,b)=>b[a],2],
-        'and':[(a,b)=>a&&b,2],
-        'bitand':[(a,b)=>a&b,2],
-        'or':[(a,b)=>a||b,2],
-        'bitor':[(a,b)=>a|b,2],
     }
     function last(arr){
         return arr[arr.length-1]
