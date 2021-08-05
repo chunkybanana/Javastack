@@ -1,5 +1,5 @@
 let elements = require('./elements')
-function run(code,inputs){
+function run(code,inputs=[]){
     function lex(text){
         let tokens = [], string = false, string_so_far = '', whitespace = ' \n\t';
         for(let char of text){
@@ -95,10 +95,9 @@ function run(code,inputs){
         }
         return compiled;
     }
-    let stack = [], inputstack = [inputs];
-    
+    let stack = [], inputstack = [inputs]; elements.eval = [a=>eval(compile(parse(lex(a)))),1]
     eval(compile(parse(lex(code))));
     //console.log(compile(parse(lex(code))))
 }
 
-run('"Hello, world!" "l" "o" replace print')
+run('2 2 add print')

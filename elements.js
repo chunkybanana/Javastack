@@ -29,7 +29,7 @@ module.exports = {
     'random':[a=>a[~~(Math.random * a.length)],1],
     'repeat':[(a,b) => b.repeat(a), 2],
     'replace':[(a,b,c) => c.replaceAll(b,a),3],
-    'sum':[a=>a.reduce(this.add[0]),1],
+    'sum':[a=>a.reduce((x,y)=>x+y),1],
     'swap': [(a,b) => [b,a],2,1],
     'third':[a=>a/3,1],
     'triple':[a=>a*3,1],
