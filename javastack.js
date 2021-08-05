@@ -1,4 +1,4 @@
-function run(code){
+function run(code,inputs){
     function lex(text){
         let tokens = [], string = false, string_so_far = '', whitespace = ' \n\t';
         for(let char of text){
@@ -11,6 +11,7 @@ function run(code){
                 if(string = !string) string_so_far = '';
             } else string_so_far += char
         }
+        if(string_so_far) tokens.push(string_so_far);
         return tokens
     }
     function parse(list){
@@ -53,20 +54,53 @@ function run(code){
         ])}`
     }
     let elements = {
-        'add':[(a,b) =>a + b,2]
+        'add':[(a,b) =>a + b,2],
+        'print':[console.log,1]
+    }
+    function last(arr){
+        return arr[arr.length-1]
+    }
+    function pop(stack,num=1,wrap = false){
+        function popRecurse(stack,num){
+            if(!num) return []
+            if(stack.length === 0){
+                last(inputstack).unshift(last(inputstack).pop());
+                return [last(inputstack)[0],...popRecurse(stack,num - 1,0)]
+            } else {
+                return [stack.pop(),...popRecurse(stack,num - 1)]
+            }
+        }
+        var res = popRecurse(stack,num);
+        if(res.length === 1 && !wrap) return res[0]
+        return res
     }
     function compile(tokens) {
         let compiled = '';
         let genSecret = x => Math.random().toString(16).slice(2);
-        let for_loop = (times, secret) => `for(${secret} = 0; ${secret} < ${times}; ${secret}++){\n context_variable = ${secret}`
+        let for_loop = (times, secret) => `for(${secret} = 0; ${secret} < ${times}; ${secret}++){\ncontext_variable = ${secret}\n`
         for(token of tokens){
             let secret = genSecret(), secret2 = genSecret();
             if(token[0] == 'twice') compiled += for_loop(2,secret);
             if(token[0] == 'thrice') compiled += for_loop(3,secret);
             if(token[0] == 'four') compiled += for_loop(4,secret);
             if(token[0] == 'five') compiled += for_loop(5,secret);
-            if(token[0] == 'times') compiled += `for(${secret} = 0,${secret2} = pop; ${secret} < ${s}; ${secret}++){\n context_variable = ${secret}`
+            if(token[0] == 'times') compiled += `for(${secret} = 0,${secret2} = pop(stack); ${secret} < ${secret2}; ${secret}++){\n context_variable = ${secret}`;
+            if(token[0] == 'forever') compiled += 'for(;;){'
+            if(['twice','thrice','if','else','four','five','times','while','forever'].includes(token[0].slice(4))) compiled += '}\n';
+            if(token[0] == 'if') compiled += 'if(pop(stack)){\n';
+            if(token[0] == 'else') compiled += '} else {\n'
+            if(token[0] == 'while') compiled += 'while(pop(stack)){\n'
+            if(token[0] == 'number') compiled += `stack.push(${token[1]})\n`;
+            if(token[0] == 'string') compiled += `stack.push(${token[1]})\n`;
+            if(token[0] == 'map') compiled += 'stack.push([...pop(stack)].map(x=>{\nvar stack = [];\ninputstack.push([x]);\n';
+            if(token[0] == 'end_map')  compiled += 'let result = pop(stack);\ninputstack.pop();\nreturn result;\n}))\n';
+            if(token[0] == 'element') compiled += `stack.push(elements.${token[1]}[0](...pop(stack,${elements[token[1]][1]}, true)))\n`;
         }
+        return compiled;
     }
-    console.log(parse(lex(code)))
+    let stack = [], inputstack = [inputs];
+    eval(compile(parse(lex(code))));
+    //console.log(compile(parse(lex(code))))
 }
+
+run('2 2 add print')
