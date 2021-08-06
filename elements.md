@@ -10,17 +10,22 @@
 |`ceil`| (a: number) | Math.ceil(a) |
 |`char`| (a:number) | chr(a) |
 |`charcode`| (a:string) | ord(a[0]) |
-|`double`| (a:number) | a * 2 |
+|`divide`| (a: number, b: number) | b/a |
+|`divmod`| (a: number, b: number) | [floor(b/a), b%a] |
+|`double`| (a:non-list) | a * 2 |
 |`duplicate`| (a: any) | a,a (duplicate) |
 |`floor`| (a: number) | Math.floor(a) |
+|`floordiv`| (a: number, b: number) | floor(b/a) |
 |`half`| (a:number) | a / 2 |
 |`index`| (a: number, b: any) | b\[a\] (index a into b) |
 |`iterate`| (a: any) | stack.push(...a) (append each item of a to the stack) |
+|`join`| (a: string, b: list) | b.join(a) |
 |`maybe`| (none) | A random boolean |
 |`multiply`| (a: number, b:number) | a * b (multiply)|
 |`not`| (a: any) | !a (logical not)  |
 |`or`| (a: any, b: any) | a \|\| b (logical)|
 |`pair`| (a:any, b:any) | \[b,a\] (pair) |
+|`power`| (a: string, b)
 |`prepend`| (a: any, b: non-number) | b.unshift(a) (string b will produce list of chars and a) |
 |`print`|(a: any) | Print a to stdout|
 |`quadruple`| (a:number) | a * 4 |
@@ -30,8 +35,10 @@
 |`randminmax`| (a:  number, b: number) | random integer between a and b |
 |`random`| (a: any) | random item from a |
 |`repeat`| (a:number, b:string) | b repeated a times
+|`split`| (a: string, b: string) | b.split(a) |
+|`square`| (a: number) | a ** 2 |
 |`sum`| (a:list) | sum(a) |
 |`swap`| (a: any, b: any) | b, a (swap the top two elements) |
 |`third`| (a:number) | a / 3 |
-|`triple`| (a:number) | a * 3 |
+|`triple`| (a:non-list) | a * 3 |
 |`wrap`| (none) | stack |

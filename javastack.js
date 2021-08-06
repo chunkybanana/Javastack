@@ -73,7 +73,7 @@ function run(code,inputs=[]){
     }
     function compile(tokens) {
         let compiled = '';
-        let genSecret = x => Math.random().toString(16).slice(2);
+        let genSecret = x => 'v'+Math.random().toString(16).slice(2);
         let for_loop = (times, secret) => `for(${secret} = 0; ${secret} < ${times}; ${secret}++){\ncontext_variable = ${secret}\n`
         for(token of tokens){
             let secret = genSecret(), secret2 = genSecret();
@@ -81,7 +81,7 @@ function run(code,inputs=[]){
             if(token[0] == 'thrice') compiled += for_loop(3,secret);
             if(token[0] == 'four') compiled += for_loop(4,secret);
             if(token[0] == 'five') compiled += for_loop(5,secret);
-            if(token[0] == 'times') compiled += `for(${secret} = 0,${secret2} = pop(stack); ${secret} < ${secret2}; ${secret}++){\n context_variable = ${secret}`;
+            if(token[0] == 'times') compiled += `for(${secret} = 0,${secret2} = pop(stack); ${secret} < ${secret2}; ${secret}++){\n context_variable = ${secret};\n`;
             if(token[0] == 'forever') compiled += 'for(;;){'
             if(['twice','thrice','if','else','four','five','times','while','forever'].includes(token[0].slice(4))) compiled += '}\n';
             if(token[0] == 'if') compiled += 'if(pop(stack)){\n';
@@ -100,4 +100,4 @@ function run(code,inputs=[]){
     //console.log(compile(parse(lex(code))))
 }
 
-run('2 2 add print')
+run('4 times 2 print')
