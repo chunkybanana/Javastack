@@ -10,6 +10,7 @@
 |`ceil`| (a: number) | Math.ceil(a) |
 |`char`| (a:number) | chr(a) |
 |`charcode`| (a:string) | ord(a[0]) |
+|`context`| (none) | context variable |
 |`divide`| (a: number, b: number) | b/a |
 |`divmod`| (a: number, b: number) | [floor(b/a), b%a] |
 |`double`| (a:non-list) | a + a |
