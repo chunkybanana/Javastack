@@ -112,5 +112,4 @@ function run(code,inputs=[]){
     if(!printed)console.log(pop(stack))
     //console.log(compile(parse(lex(code))))
 }
-
 run('',[])

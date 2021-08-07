@@ -2,8 +2,10 @@
  command | inputs | effect
  ---|---|---
 |`add`| (a: number / string, b: number / string) | a + b (addition) |
+|`alphabet`| (none) | lowercase alphabet
 |`and`| (a: any, b: any) | a && b (logical)|
 |`append`| (a:any, b:non-number) | b.push(a) (string b will produce list of chars and a)|
+|`ascii`| (none) | Printable ASCII |
 |`bitand`| (a: number, b: number)| a & b (bitwise) |
 |`bitnot`| (a: number) | ~a (bitwise not) |
 |`bitor`| (a: number, b: number)| a \| b (bitwise) |
@@ -24,6 +26,7 @@
 |`index`| (a: number, b: any) | b\[a\] (index a into b) |
 |`iterate`| (a: any) | stack.push(...a) (append each item of a to the stack) |
 |`join`| (a: string, b: list) | b.join(a) |
+|`length`| (a: any) | a.length |
 |`maybe`| (none) | A random boolean |
 |`multiply`| (a: number, b:number) | a * b (multiply)|
 |`not`| (a: any) | !a (logical not)  |
@@ -35,6 +38,7 @@
 |`print`|(a: any) | Print a to stdout|
 |`quadruple`| (a:number) | a + a + a + a |
 |`quarter`| (a:number) | a / 4 |
+|`quote`| (none) | '"' |
 |`randfloat`| (none) | Math.random() (random float between 0 and 1)
 |`randint`| (a: number) | random integer between 0 and a |
 |`randminmax`| (a:  number, b: number) | random integer between a and b |

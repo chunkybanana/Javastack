@@ -20,6 +20,7 @@ module.exports = {
     'index': [(a,b)=>b[a],2],
     'iterate':[(a) => [...a],1,1],
     'join':[(a,b)=>b.join(a),2],
+    'length':[a=>a.length, 1],
     'maybe': [() => Math.random() < 0.5,0],
     'mod':[(a,b)=>b%a,2],
     'multiply':[(a,b)=> a * b, 2],
@@ -45,4 +46,7 @@ module.exports = {
     'swap': [(a,b) => [a,b],2,1],
     'third':[a=>a/3,1],
     'triple':[a=>a+a+a,1],
+    'ascii':[()=>[...Array(95)].map((_,x)=>String.fromCharCode(x+32)).join``,0],
+    'alphabet':[()=>'abcdefghijklmnopqrstuvwxyz',0],
+    'quote':[()=>'"',0]
 }
