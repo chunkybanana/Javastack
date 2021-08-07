@@ -26,7 +26,7 @@ module.exports = {
     'pair':[(a,b)=>[b,a],2],
     'power':[(a,b)=>b**a, 2],
     'prepend':[(a,b)=>[a,...b],2],
-    'print':[a=>console.log(x)||[],1,1],
+    'print':[a=>console.log(a)||[],1,1],
     'quadruple':[a=>a+a+a+a,1],
     'quarter':[a=>a/4,1],
     'randfloat':[Math.random,0],
