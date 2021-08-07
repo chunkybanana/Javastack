@@ -12,11 +12,14 @@
 |`charcode`| (a:string) | ord(a[0]) |
 |`divide`| (a: number, b: number) | b/a |
 |`divmod`| (a: number, b: number) | [floor(b/a), b%a] |
-|`double`| (a:non-list) | a * 2 |
+|`double`| (a:non-list) | a + a |
 |`duplicate`| (a: any) | a,a (duplicate) |
+|`equal`|(a: any, b: any) | a == b |
+|`flatprint`|(a: any) | print without newline |
 |`floor`| (a: number) | Math.floor(a) |
 |`floordiv`| (a: number, b: number) | floor(b/a) |
 |`half`| (a:number) | a / 2 |
+|`increment`|(a: number) | a + 1|
 |`index`| (a: number, b: any) | b\[a\] (index a into b) |
 |`iterate`| (a: any) | stack.push(...a) (append each item of a to the stack) |
 |`join`| (a: string, b: list) | b.join(a) |
@@ -25,20 +28,22 @@
 |`not`| (a: any) | !a (logical not)  |
 |`or`| (a: any, b: any) | a \|\| b (logical)|
 |`pair`| (a:any, b:any) | \[b,a\] (pair) |
-|`power`| (a: string, b)
+|`pop`|(a: any) | pop stack |
+|`power`| (a: number, b: number) | a ** b
 |`prepend`| (a: any, b: non-number) | b.unshift(a) (string b will produce list of chars and a) |
 |`print`|(a: any) | Print a to stdout|
-|`quadruple`| (a:number) | a * 4 |
+|`quadruple`| (a:number) | a + a + a + a |
 |`quarter`| (a:number) | a / 4 |
 |`randfloat`| (none) | Math.random() (random float between 0 and 1)
 |`randint`| (a: number) | random integer between 0 and a |
 |`randminmax`| (a:  number, b: number) | random integer between a and b |
 |`random`| (a: any) | random item from a |
+|`range`| (a: number) | 0...n |
 |`repeat`| (a:number, b:string) | b repeated a times
 |`split`| (a: string, b: string) | b.split(a) |
 |`square`| (a: number) | a ** 2 |
 |`sum`| (a:list) | sum(a) |
 |`swap`| (a: any, b: any) | b, a (swap the top two elements) |
 |`third`| (a:number) | a / 3 |
-|`triple`| (a:non-list) | a * 3 |
-|`wrap`| (none) | stack |
+|`triple`| (a:non-list) | a + a + a |
+|`wrap`| (none) | \[stack\] |

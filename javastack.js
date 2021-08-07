@@ -95,9 +95,14 @@ function run(code,inputs=[]){
         }
         return compiled;
     }
-    let stack = [], inputstack = [inputs]; elements.eval = [a=>eval(compile(parse(lex(a)))),1]; elements.wrap = [()=>stack,0]
+    let stack = [], inputstack = [inputs], printed = false; 
+    elements.eval = [a=>eval(compile(parse(lex(a)))),1]; 
+    elements.wrap = [()=>stack,0];
+    elements.print = [(a)=>(console.log(a),printed = true,[]),1,1];
+    elements.flatprint = [(a)=>[a=>(process.stdout.write(String(a)),printed = true, []),1,1],]
     eval(compile(parse(lex(code))));
+    if(!printed)console.log(pop(stack))
     //console.log(compile(parse(lex(code))))
 }
 
-run('1 multiply 1 swap wrap print',[4])
+run('5',[4])
