@@ -38,7 +38,7 @@ module.exports = {
     'split':[(a,b)=>b.split(a),2],
     'square':[(a)=>a*a,1],
     'sum':[a=>a.reduce((x,y)=>x+y),1],
-    'swap': [(a,b) => [b,a],2,1],
+    'swap': [(a,b) => [a,b],2,1],
     'third':[a=>a/3,1],
     'triple':[a=>a+a+a,1],
     'wrap':[() => stack, 0],

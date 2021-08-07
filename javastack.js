@@ -100,4 +100,4 @@ function run(code,inputs=[]){
     //console.log(compile(parse(lex(code))))
 }
 
-run('1 5 times 1 add duplicate end wrap print',[4])
+run('1 multiply 1 swap wrap print',[4])
