@@ -16,7 +16,7 @@ It also has several constructs, such as loops, conditionals, etc:
 - `twice`, `thrice`, `four` and `five` loops evaluate the code within them said amount of times
 - `times` loops pop the stack, and loop that many times
 - `forever` loops run forever
-- `foreach` loops iterate over each item of a list or string (item is currently inaccessible), using the current stack
+- `foreach` loops iterate over each item of a list or string (item is currently inaccessible), using the current stack - This has actually been implemented now!
 - `while` loops pop the stack at every iteration and check that that is truthy
 - `map` iterates over each value of a list or string in its own stack, popping it at the end to return a value and modify the existing value
 - `if` pops the stack and runs the code between it and an `else` or `end` if the popped value is truthy
