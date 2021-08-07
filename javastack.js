@@ -95,9 +95,9 @@ function run(code,inputs=[]){
         }
         return compiled;
     }
-    let stack = [], inputstack = [inputs]; elements.eval = [a=>eval(compile(parse(lex(a)))),1]
+    let stack = [], inputstack = [inputs]; elements.eval = [a=>eval(compile(parse(lex(a)))),1]; elements.wrap = [()=>stack,0]
     eval(compile(parse(lex(code))));
-    //console.log(compile(parse(lex(code))))
+    console.log(compile(parse(lex(code))))
 }
 
-run('4 times 2 print')
+run('1 5 times 1 add duplicate end wrap print',[4])
