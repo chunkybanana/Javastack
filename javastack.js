@@ -82,8 +82,9 @@ function run(code,inputs=[]){
             if(token[0] == 'four') compiled += for_loop(4,secret);
             if(token[0] == 'five') compiled += for_loop(5,secret);
             if(token[0] == 'times') compiled += `for(${secret} = 0,${secret2} = pop(stack); ${secret} < ${secret2}; ${secret}++){\n context_variable = ${secret};\n`;
+            if(token[0] == 'foreach') compiled += `for(context_variable of pop(stack)){`
             if(token[0] == 'forever') compiled += 'for(;;){'
-            if(['twice','thrice','if','else','four','five','times','while','forever'].includes(token[0].slice(4))) compiled += '}\n';
+            if(['twice','thrice','if','else','four','five','times','while','forever','foreach'].includes(token[0].slice(4))) compiled += '}\n';
             if(token[0] == 'if') compiled += 'if(pop(stack)){\n';
             if(token[0] == 'else') compiled += '} else {\n'
             if(token[0] == 'while') compiled += 'while(pop(stack)){\n'
@@ -91,7 +92,14 @@ function run(code,inputs=[]){
             if(token[0] == 'string') compiled += `stack.push(${token[1]})\n`;
             if(token[0] == 'map') compiled += 'stack.push([...pop(stack)].map(x=>{\nvar stack = [];\ninputstack.push([x]);\n';
             if(token[0] == 'end_map')  compiled += 'let result = pop(stack);\ninputstack.pop();\nreturn result;\n}))\n';
-            if(token[0] == 'element') compiled += `stack.push(${elements[token[1]][2]?'...':''}elements.${token[1]}[0](...pop(stack,${elements[token[1]][1]}, true)))\n`;
+            
+            if(token[0] == 'element'){
+                if(token[1] == 'context'){
+                    compiled += `stack.push(context_variable);\n`
+                } else {
+                    compiled += `stack.push(${elements[token[1]][2]?'...':''}elements.${token[1]}[0](...pop(stack,${elements[token[1]][1]}, true)))\n`;
+                }
+            }
         }
         return compiled;
     }
@@ -99,10 +107,10 @@ function run(code,inputs=[]){
     elements.eval = [a=>eval(compile(parse(lex(a)))),1]; 
     elements.wrap = [()=>stack,0];
     elements.print = [(a)=>(console.log(a),printed = true,[]),1,1];
-    elements.flatprint = [(a)=>[a=>(process.stdout.write(String(a)),printed = true, []),1,1],]
+    elements.flatprint = [a=>(process.stdout.write(String(a)),printed = true, []),1,1]
     eval(compile(parse(lex(code))));
     if(!printed)console.log(pop(stack))
     //console.log(compile(parse(lex(code))))
 }
 
-run('5',[4])
+run('',[])
