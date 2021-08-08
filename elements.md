@@ -3,7 +3,7 @@
  ---|---|---
 |`add`| (a: number / string, b: number / string) | a + b (addition) |
 |`alphabet`| (none) | lowercase alphabet
-|`and`| (a: any, b: any) | a && b (logical)|
+|`logicand`| (a: any, b: any) | a && b (logical)|
 |`append`| (a:any, b:non-number) | b.push(a) (string b will produce list of chars and a)|
 |`ascii`| (none) | Printable ASCII |
 |`bitand`| (a: number, b: number)| a & b (bitwise) |
@@ -18,6 +18,7 @@
 |`double`| (a:non-list) | a + a |
 |`duplicate`| (a: any) | a,a (duplicate) |
 |`equal`|(a: any, b: any) | a == b |
+|`eval`| (a: string) | eval as Javastack code |
 |`flatprint`|(a: any) | print without newline |
 |`floor`| (a: number) | Math.floor(a) |
 |`floordiv`| (a: number, b: number) | floor(b/a) |
@@ -29,8 +30,8 @@
 |`length`| (a: any) | a.length |
 |`maybe`| (none) | A random boolean |
 |`multiply`| (a: number, b:number) | a * b (multiply)|
-|`not`| (a: any) | !a (logical not)  |
-|`or`| (a: any, b: any) | a \|\| b (logical)|
+|`logicnot`| (a: any) | !a (logical not)  |
+|`logicor`| (a: any, b: any) | a \|\| b (logical)|
 |`pair`| (a:any, b:any) | \[b,a\] (pair) |
 |`pop`|(a: any) | pop stack |
 |`power`| (a: number, b: number) | a ** b
@@ -52,3 +53,4 @@
 |`third`| (a:number) | a / 3 |
 |`triple`| (a:non-list) | a + a + a |
 |`wrap`| (none) | \[stack\] |
+|`zpake`| (none) | space char |

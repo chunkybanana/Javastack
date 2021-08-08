@@ -1,6 +1,6 @@
 module.exports = {
     'add':[(a,b) =>a + b,2],
-    'and':[(a,b)=>a&&b,2],
+    'logicand':[(a,b)=>a&&b,2],
     'append':[(a,b)=>[...b,a],2],
     'bitand':[(a,b)=>a&b,2],
     'bitnot':[(a)=>~a,1],
@@ -24,8 +24,8 @@ module.exports = {
     'maybe': [() => Math.random() < 0.5,0],
     'mod':[(a,b)=>b%a,2],
     'multiply':[(a,b)=> a * b, 2],
-    'not':[(a)=>!a,1],
-    'or':[(a,b)=>a||b,2],
+    'logicnot':[(a)=>!a,1],
+    'logicor':[(a,b)=>a||b,2],
     'pair':[(a,b)=>[b,a],2],
     'pop':[(a)=>[],1,1],
     'power':[(a,b)=>b**a, 2],
@@ -48,5 +48,6 @@ module.exports = {
     'triple':[a=>a+a+a,1],
     'ascii':[()=>[...Array(95)].map((_,x)=>String.fromCharCode(x+32)).join``,0],
     'alphabet':[()=>'abcdefghijklmnopqrstuvwxyz',0],
-    'quote':[()=>'"',0]
+    'quote':[()=>'"',0],
+    'zpake':[()=>' ',0]
 }
