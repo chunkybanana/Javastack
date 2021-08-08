@@ -11,7 +11,7 @@
 |`bitor`| (a: number, b: number)| a \| b (bitwise) |
 |`ceil`| (a: number) | Math.ceil(a) |
 |`char`| (a:number) | chr(a) |
-|`charcode`| (a:string) | ord(a[0]) |
+|`charcode`| (a:any) | ord(a[0]) |
 |`context`| (none) | context variable |
 |`divide`| (a: number, b: number) | b/a |
 |`divmod`| (a: number, b: number) | [floor(b/a), b%a] |
@@ -45,9 +45,11 @@
 |`randminmax`| (a:  number, b: number) | random integer between a and b |
 |`random`| (a: any) | random item from a |
 |`range`| (a: number) | 0...n |
-|`repeat`| (a:number, b:string) | b repeated a times
-|`split`| (a: string, b: string) | b.split(a) |
+|`remove`| (a: any, b: any) | remove all occurences of a from b |
+|`repeat`| (a:number, b:any) | b repeated a times
+|`split`| (a: any, b: any) | b.split(a) |
 |`square`| (a: number) | a ** 2 |
+|`subtract`| (a: number, b: number) | b - a |
 |`sum`| (a:list) | sum(a) |
 |`swap`| (a: any, b: any) | b, a (swap the top two elements) |
 |`third`| (a:number) | a / 3 |
