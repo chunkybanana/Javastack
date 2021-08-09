@@ -22,6 +22,7 @@
 |`flatprint`|(a: any) | print without newline |
 |`floor`| (a: number) | Math.floor(a) |
 |`floordiv`| (a: number, b: number) | floor(b/a) |
+|`get`| (none) | register |
 |`half`| (a:number) | a / 2 |
 |`increment`|(a: number) | a + 1|
 |`index`| (a: number, b: any) | b\[a\] (index a into b) |
@@ -48,6 +49,7 @@
 |`remove`| (a: any, b: any) | remove all occurences of a from b |
 |`repeat`| (a:number, b:any) | b repeated a times |
 |`replace`| (a: any, b: any, c: any) | c.replaceAll(b,a) |
+|`set`| (a: any) | register = a |
 |`split`| (a: any, b: any) | b.split(a) |
 |`square`| (a: number) | a ** 2 |
 |`subtract`| (a: number, b: number) | b - a |
