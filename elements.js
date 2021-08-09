@@ -50,6 +50,6 @@ module.exports = {
     'alphabet':[()=>'abcdefghijklmnopqrstuvwxyz',0],
     'quote':[()=>'"',0],
     'zpake':[()=>' ',0],
-    'subtract':[()=>a-b,2],
+    'subtract':[(a,b)=>a-b,2],
     'remove':[(a,b)=>b.replaceAll(a,''),2],
 }

@@ -39,14 +39,15 @@
 |`print`|(a: any) | Print a to stdout|
 |`quadruple`| (a:number) | a + a + a + a |
 |`quarter`| (a:number) | a / 4 |
-|`quote`| (none) | '"' |
+|`quote`| (none) | '"' - ascii quote character |
 |`randfloat`| (none) | Math.random() (random float between 0 and 1)
 |`randint`| (a: number) | random integer between 0 and a |
 |`randminmax`| (a:  number, b: number) | random integer between a and b |
 |`random`| (a: any) | random item from a |
 |`range`| (a: number) | 0...n |
 |`remove`| (a: any, b: any) | remove all occurences of a from b |
-|`repeat`| (a:number, b:any) | b repeated a times
+|`repeat`| (a:number, b:any) | b repeated a times |
+|`replace`| (a: any, b: any, c: any) | c.replaceAll(b,a) |
 |`split`| (a: any, b: any) | b.split(a) |
 |`square`| (a: number) | a ** 2 |
 |`subtract`| (a: number, b: number) | b - a |
